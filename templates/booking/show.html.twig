@@ -34,7 +34,7 @@
                         <dt class="col-md-4">Montant total</dt>
                         <dd class="col-md-8">{{ booking.amount }} &euro;</dd>
                         <dt class="col-md-4">Commentaire</dt>
-                        <dd class="col-md-8">{{ booking.comment }}</dd>
+                        <dd class="col-md-8">{{ booking.comment | default('Aucun commentaire') }}</dd>
                     </dl>
 
                     <hr>
@@ -55,6 +55,30 @@
                     </div>
                     {{ author.description | raw }}
                     <a href="{{ path('user_show', {'slug': author.slug}) }}" class="btn btn-primary">Plus d'infos sur {{ author.firstName }}</a>
+
+                    <hr>
+
+                    <div class="alert alert-light">
+                        <h2 class="alert-heading">Votre avis compte !</h2>
+                        {% if date() > date(booking.endDate) %}
+                            {% set comment = booking.ad.getCommentFromAuthor(app.user) %}
+                            {% if comment is not null %}
+                                <blockquote>
+                                    {{ comment.content }}
+                                </blockquote>
+
+                                <strong>Note : {% include 'partials/rating.html.twig' with {'rating': comment.rating} %}<br></strong>
+                            {% else %}
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                <button type="submit" class="btn btn-success">Confirmer !</button>
+                                {{ form_end(form) }}                                                                 
+                            {% endif %}
+                        {% else %}
+                            <p>Revenez après votre voyage !</p>
+                        {% endif %}
+                    </div>
+
                 </div>
             </div>            
             <div class="col">
