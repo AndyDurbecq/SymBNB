@@ -7,10 +7,14 @@ div.ad-title {
     background-size: cover;  
     background-position: center;
 }
-
 div.ad-title h1, div.ad-title p {
     color: #fff;
     text-shadow: 3px 3px 3px rgba(0,0,0,.5);
+}
+div.ad-title .btn {
+    margin-top: 2em;
+    font-size: 1.5em;
+    line-height: 1em;
 }
 
 div.carousel-caption {
@@ -22,12 +26,10 @@ div.carousel-caption {
     max-height: 128px;
     border-radius: 50%;
 }
-
 .avatar-medium {
     max-width: 64px;
     max-height: 64px;
 }
-
 .avatar-mini {
     max-width: 24px;
     max-height: 24px;
@@ -38,3 +40,11 @@ div.carousel-caption {
 }
 
 .rating i { color: goldenrod; }
+
+.alert a {
+    text-decoration: none;
+}
+.alert .btn {
+    color: white;
+}
+
